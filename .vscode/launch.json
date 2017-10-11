@@ -2,39 +2,111 @@
     // 使用 IntelliSense 了解相关属性。
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-	"version": "0.2.0",
-	"configurations": [
-	    {
-                "type": "node",
-                "request": "launch",
-                "name": "调试w3ctech birthday gift 服务端代码",
-                "program": "${workspaceRoot}",
-                "cwd": "${workspaceRoot}",
-                "outDir": "${workspaceRoot}/dist",
-                "sourceMaps": true,
-                "smartStep": true,
-                "skipFiles": [
-                    "node_modules/**"
-                ],
-                "trace": "verbose"
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "调试 w3ctech birthday gift 浏览器端代码",
+            "type": "chrome",
+            "request": "launch",
+            "webRoot": "${workspaceRoot}",
+            "url": "http://localhost:7777",
+            "userDataDir": "${workspaceRoot}/.vscode/chrome",
+            "sourceMaps": true,
+            "preLaunchTask": null,
+            "smartStep": true,
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": [
+                "node_modules/**"
+            ],
+            "sourceMapPathOverrides": {
+                // "webpack:///*": "${webRoot}/*"
+            }
         },
         {
-              "name": "调试w3ctech birthday gift 浏览器端代码",
-              "type": "chrome",
-              "request": "launch",
-              "webRoot": "${workspaceRoot}",
-              "url": "http://localhost:7777",
-              "userDataDir": "${workspaceRoot}/.vscode/chrome",
-              "sourceMaps": true,
-              "preLaunchTask": null,
-              "smartStep": true,
-              "internalConsoleOptions": "openOnSessionStart",
-              "skipFiles": [
-                  "node_modules/**"
-              ],
-              "sourceMapPathOverrides": {
-                  // "webpack:///*": "${webRoot}/*"
-              }
-          }
-	]
+            "name": "program 启动",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/www/index.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": "nodemon",
+            "runtimeArgs": [
+                "--nolazy",
+                "--inspect-brk",
+                "--inspect=9876"
+                // "--debug-brk"
+                // "--es_staging",
+                // "--harmony-proxies"
+            ],
+            "env": {
+                // "NODE_ENV": "development"
+            },
+            "envFile": "${workspaceRoot}/.env",
+            "outFiles": [
+                "${workspaceRoot}/app/**"
+            ],
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "protocol": "inspector",
+            "sourceMaps": true,
+            "smartStep": true,
+            "timeout": 30000,
+            "skipFiles": [
+                "node_modules/**"
+            ],
+            "trace": "verbose",
+            "port": 9876
+        },
+        {
+            "name": "调试 w3ctech birthday gift 服务器端代码",
+            "type": "node",
+            "request": "attach",
+            "protocol": "inspector",
+            "port": 9876,
+            // "address": "localhost",
+            "restart": true,
+            "sourceMaps": true,
+            "outFiles": ["${workspaceRoot}/app/**/**/*.js"]
+            // "localRoot": "${workspaceRoot}",
+            // "remoteRoot": null
+        },
+        {
+            "name": "npm 启动",
+            "type": "node",
+            "request": "launch",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+                // "--es_staging",
+                // "--harmony-proxies"
+            ],
+            "env": {
+                // "NODE_ENV": "development"
+            },
+            "envFile": "${workspaceRoot}/.env",
+            "outFiles": [
+                "${workspaceRoot}/app/**"
+            ],
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "protocol": "inspector",
+            "sourceMaps": true,
+            "smartStep": true,
+            "timeout": 30000,
+            "skipFiles": [
+                "node_modules/**"
+            ],
+            "trace": "verbose",
+            "port": 9876
+        }
+    ]
 }
