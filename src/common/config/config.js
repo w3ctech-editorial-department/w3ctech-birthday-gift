@@ -2,12 +2,10 @@ export default {
   host: '127.0.0.1',
   port: 7777,
   //cluster_on: true,
-  
 
   locale: { //i18n
     name: 'think_locale',
-    // default: 'zh-CN'
-    default: 'en'
+    default: 'zh-CN'
   },
   view: {
     content_type: 'text/html',

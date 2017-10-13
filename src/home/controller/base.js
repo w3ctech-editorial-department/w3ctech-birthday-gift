@@ -11,11 +11,11 @@ export default class extends think.controller.base {
    * @return {} []
    */
   __before(){
+    this.lang('zh-cn', true);
     this.assign({
       title: this.locale('title-home'),
       currentNav: '',
       hasBootstrap: false,
-      hasVersion: false,
       lang: this.http.lang()
     });
   }

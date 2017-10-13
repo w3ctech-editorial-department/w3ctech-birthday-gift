@@ -1,88 +1,55 @@
 <!DOCTYPE html>
-<!--!
-
- _______ _     _       _        _  _____
-|__   __| |   (_)     | |      | |/ ____|
-   | |  | |__  _ _ __ | | __   | | (___
-   | |  | '_ \| | '_ \| |/ /   | |\___ \
-   | |  | | | | | | | |   < |__| |____) |
-   |_|  |_| |_|_|_| |_|_|\_\____/|_____/
-
--->
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title><%-title%></title>
-<meta name="renderer" content="webkit">
-<meta name="format-detection" content="telephone=no">
-<meta name="referrer" content="always">
-<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-<link rel="apple-touch-icon" href="/static/img/favicon.png">
-<meta name="keywords" content="ThinkJS, Node.js, io.js, MVC, Restful, Generator Function, ES6, ES7, Promise">
-<meta name="description" content="ThinkJS 是一款可以使用 ES6/7 特性开发项目的 Node.js 框架，使用 async/await 或者 */yield 彻底解决异步回调的问题。同时支持 TypeScript。">
-<%lscookie='header'%>
-<link href="/static/css/reset.css" rel="stylesheet" data-ls="css_reset" />
-<link href="/static/module/highlight/styles/github-gist.css" rel="stylesheet" data-ls="css_github" >
-<%if(hasBootstrap){%>
-<link href="/static/module/bootstrap/css/bootstrap.css" rel="stylesheet" data-ls="css_bootstrap" />
-<%}%>
-<link href="/static/css/index.css" rel="stylesheet" data-ls="css_index" />
-<link rel="stylesheet" href="/static/css/new.css">
+    <meta charset="UTF-8">
+    <title>
+        <%-title%>
+    </title>
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="always">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <link rel="apple-touch-icon" href="/static/img/favicon.png">
+    <meta name="keywords" content="ThinkJS, Node.js, io.js, MVC, Restful, Generator Function, ES6, ES7, Promise">
+    <meta name="description" content="ThinkJS 是一款可以使用 ES6/7 特性开发项目的 Node.js 框架，使用 async/await 或者 */yield 彻底解决异步回调的问题。同时支持 TypeScript。">
+    <%lscookie='header'%>
+    <link href="/static/css/reset.css" rel="stylesheet" data-ls="css_reset" />
+    <link href="/static/module/highlight/styles/github-gist.css" rel="stylesheet" data-ls="css_github">
+    <%if(hasBootstrap){%>
+    <link href="/static/module/bootstrap/css/bootstrap.css" rel="stylesheet" data-ls="css_bootstrap" />
+    <%}%>
+    <link href="/static/css/index.css" rel="stylesheet" data-ls="css_index" />
+    <link rel="stylesheet" href="/static/css/new.css">
+    <link rel="stylesheet" href="/static/css/new-home.css">
 </head>
+
 <body>
-  <div class="header">
-    <div class="wrap clearfix">
-          <div class="logo">
-              <a class="navbar-brand" href="/" title="ThinkJS">
-                ThinkJS
-              </a>
-          </div>
-          <div class="headr">
-              <ul class="nav">
-                <li>
-                  <form method="get" action="/zh-cn/doc/3.0/search">
-                    <span 
-                      class="algolia-autocomplete" 
-                      style="position: relative; display: inline-block; direction: ltr;"
+    <div class="header">
+        <div class="wrap clearfix">
+            <div class="logo">
+                <a class="navbar-brand" href="/" title="ThinkJS">
+                    ThinkJS
+                </a>
+            </div>
+            <div class="headr">
+                <ul class="nav">
+                    <li <%if(currentNav === 'about'){%>class="current"
+                        <%}%>
                     >
-                      <input 
-                        type="text" 
-                        id="search" 
-                        class="ds-input" 
-                        autocomplete="off" 
-                        spellcheck="false" 
-                        role="combobox" 
-                        aria-autocomplete="list" 
-                        aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" 
-                        dir="auto" 
-                        style="position: relative; vertical-align: top;" name="keyword"
-                      >
-                    </span>
-                  </form>
-                </li>
-                <li <%if(currentNav === 'doc'){%>class="current"<%}%>><a href="/doc/index.html">Documentation</a></li>
-                <li <%if(currentNav === 'changelog'){%>class="current"<%}%>><a href="/changelog.html">Change Log</a></li>
-                <li><a href="https://github.com/thinkjs/think-awesome">Awesome</a></li>
-                <li <%if(currentNav === 'donate'){%>class="current"<%}%>><a href="/donate.html">Donate</a></li>
-                <li>
-                <form action="/zh-cn/doc/3.0/search"> <span class="algolia-autocomplete" style="position:relative;display:inline-block;direction:ltr"> <input type="text" id="search" class="ds-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position:relative;vertical-align:top" name="keyword"> </span></form>
-                </li>
-                <li class="lang">
-                    <a href="/en">EN</a>
-                </li>
-              </ul>
-              <%if(hasVersion){%>
-              <div class="version" id="version">
-                  <a href="javascript:;" class="versel"><span><%-version%></span><i class="arrowd"></i></a>
-                  <ul id="verlist" class="verlist">
-                      <li><a href="/<%-lang%>/doc/3.0/index.html">3.0</a></li>
-                      <li><a href="/<%-lang%>/doc/2.2/index.html">2.2</a></li>
-                      <li><a href="/<%-lang%>/doc/2.1/index.html">2.1</a></li>
-                      <li><a href="/<%-lang%>/doc/2.0/index.html">2.0</a></li>
-                      <li><a href="/<%-lang%>/doc/1.2/index.html">1.2</a></li>
-                  </ul>
-              </div>
-              <%}%>
-          </div>
-      </div>
-  </div>
+                            <a href="about.html">关于我们</a>
+                    </li>
+                    <li <%if(currentNav === 'event'){%>class="current"
+                        <%}%>
+                    >
+                            <a href="/event.html">成长经历</a>
+                    </li>
+                    <li <%if(currentNav === 'birthday'){%>class="current"
+                        <%}%>
+                    >
+                            <a href="/birthday.html">生日祝福</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
