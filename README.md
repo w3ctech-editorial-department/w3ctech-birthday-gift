@@ -1,13 +1,13 @@
-# www.thinkjs.org
+# birthday.w3ctech.com
 
-ThinkJS website code
+w3ctech birthday gift website code
 
-![www.thinkjs.org](http://p0.qhimg.com/d/inn/20b8a871/1.jpg)
+![birthday.w3ctech.com](https://img.w3ctech.com/w3ctech.jpeg)
 
 ## Installation
 
 ```
-git clone git@github.com:75team/www.thinkjs.org.git
+git@github.com:w3ctech-editorial-department/w3ctech-birthday-gift.git
 ```
 
 ## Install dependencies
