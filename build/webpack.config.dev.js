@@ -67,7 +67,7 @@ config.module.rules.forEach(function (rule) {
     }
     else if (String(rule.use).match(/babel-loader/)) {
         rule.use = Array.isArray(rule.use) ? rule.use : [rule.use];
-        rule.use.unshift('react-hot-loader/webpack');
+        rule.use.unshift('react-hot-loader/webpack');// module exports are registered
         rule.use.push(fecsLoader);
     }
 });

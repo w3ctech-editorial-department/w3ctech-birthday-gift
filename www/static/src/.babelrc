@@ -9,7 +9,7 @@
         "react"
     ],
     "plugins": [
-        "react-hot-loader/babel",
+        "react-hot-loader/babel",//top level variables are registered
         "transform-runtime",
         "transform-decorators-legacy",
         "add-module-exports"

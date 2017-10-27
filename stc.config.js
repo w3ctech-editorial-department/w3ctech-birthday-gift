@@ -9,48 +9,48 @@ var localstorageAdapter = require('stc-localstorage-ejs');
 var version = require('stc-resource-version');
 
 stc.config({
-  cluster: false,
-  product: 'thinkjs',
-  include: ['www/static', 'view_build'],
-  exclude: [/\.bak$/],
-  tpl: {
-    engine: 'ejs',
-    ld: ['<%'],
-    rd: ['%>'],
-  }
+    cluster: false,
+    product: 'thinkjs',
+    include: ['www/static', 'view_build'],
+    exclude: [/\.bak$/],
+    tpl: {
+        engine: 'ejs',
+        ld: ['<%'],
+        rd: ['%>'],
+    }
 });
 
 stc.workflow({
-  uglify: {plugin: uglify},
-  cssCompress: {
-    plugin: cssCompress,
-    exclude: [/\.min\./]
-  },
-  
-  htmlCompress: {plugin: htmlCompress},
-  localstorage: {
-    include: [{type: 'tpl'}],
-    exclude: [/\/doc\//],
-    plugin: localstorage,
-    options: {
-      adapter: localstorageAdapter,
-      minLength : 200,
-      appId : 'd0ac6c56'
-    }
-  },
-  version: {
-    plugin: version,
-    include: [{type: 'tpl'}]
-  },
-  // cdn: {
-  //   plugin: cdn, 
-  //   exclude: [/\/doc\//],
-  //   options: {
-  //     adapter: cdnAdapter, 
-  //     https: true,
-  //     exclude: [/other\/icon/]
-  //   }
-  // }
+    uglify: { plugin: uglify },
+    cssCompress: {
+        plugin: cssCompress,
+        exclude: [/\.min\./]
+    },
+
+    htmlCompress: { plugin: htmlCompress },
+    localstorage: {
+        include: [{ type: 'tpl' }],
+        exclude: [/\/doc\//],
+        plugin: localstorage,
+        options: {
+            adapter: localstorageAdapter,
+            minLength: 200,
+            appId: 'd0ac6c56'
+        }
+    },
+    version: {
+        plugin: version,
+        include: [{ type: 'tpl' }]
+    },
+    // cdn: {
+    //   plugin: cdn,
+    //   exclude: [/\/doc\//],
+    //   options: {
+    //     adapter: cdnAdapter,
+    //     https: true,
+    //     exclude: [/other\/icon/]
+    //   }
+    // }
 });
 
 stc.start();

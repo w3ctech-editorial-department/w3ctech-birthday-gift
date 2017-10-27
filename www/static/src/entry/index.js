@@ -5,16 +5,23 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createSagaMiddleware from 'redux-saga';
+import Redbox from 'redbox-react';
 import DevTools from '../component/DevTools';
 
 import {AppContainer} from 'react-hot-loader';
 
 const saga = createSagaMiddleware();
+
+const CustomErrorReporter = ({error}) => <Redbox error={error}/>;
+CustomErrorReporter.propTypes = {
+    error: PropTypes.instanceOf(Error).isRequired
+};
 
 export default (reducer, App, id = 'app') => {
     let enhancer = applyMiddleware(...[thunk, saga, promise]);
@@ -35,7 +42,7 @@ export default (reducer, App, id = 'app') => {
 
         ReactDOM.render(
             <Provider store={store}>
-                <AppContainer>
+                <AppContainer errorReporter={CustomErrorReporter} warnings={true}>
                     <Component />
                 </AppContainer>
             </Provider>,
