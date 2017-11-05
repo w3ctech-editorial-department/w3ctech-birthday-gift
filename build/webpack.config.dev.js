@@ -21,8 +21,8 @@ Object.keys(config.entry).forEach(function (key) {
 var fecsLoader = {
     loader: 'fecs-loader',
     options: {
-        failOnError: !true,
-        failOnWarning: !true
+        failOnError: false,
+        failOnWarning: false
     }
 };
 

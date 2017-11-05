@@ -10,7 +10,7 @@ var port = process.env.PORT // PORT=3001 node ./build/server.js
 
 try {
     childProcess.exec('kill -9 `lsof -t -i:' + port + '`');
-    childProcess.exec('kill -9 `lsof -t -i:' + 9876 + '`');
+    // childProcess.exec('kill -9 `lsof -t -i:' + 9876 + '`');
 }
 catch (ex) {
 }

@@ -6,12 +6,24 @@
                 "modules": false
             }
         ],
+        // "stage-2",
         "react"
     ],
     "plugins": [
         "react-hot-loader/babel",//top level variables are registered
-        "transform-runtime",
+        [
+            "@babel/transform-runtime", {
+                "helpers": true,
+                "polyfill": true,
+                "regenerator": true,
+                "moduleName": "@babel/runtime",
+                "useBuiltIns": false,
+                "useESModules": false
+            }
+        ],
         "transform-decorators-legacy",
-        "add-module-exports"
-    ]
+        "add-module-exports",
+        "transform-object-rest-spread"
+    ],
+    "comments": false
 }
