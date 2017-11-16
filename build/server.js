@@ -4,7 +4,7 @@ var config = require('./webpack.config.dev');
 var childProcess = require('child_process');
 
 var port = process.env.PORT // PORT=3001 node ./build/server.js
-    || process.argv[2].split('=')[1] // node ./build/server.js --port=3001
+    || (process.argv[2] && process.argv[2].split('=')[1]) // node ./build/server.js --port=3001
     || process.env.npm_package_config_port
     || 3000;
 

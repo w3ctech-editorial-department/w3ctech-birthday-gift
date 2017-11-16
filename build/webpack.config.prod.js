@@ -1,11 +1,15 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var HashedModuleIdsPlugin = require('webpack/lib/HashedModuleIdsPlugin');
+var ImageminPlugin = require('imagemin-webpack-plugin');
+var CompressionPlugin = require('compression-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var config = require('./webpack.config');
 
 var autoImports = [
-    'whatwg-fetch'
+    'whatwg-fetch',
+    'babel-polyfill'
 ];
 
 Object.keys(config.entry).forEach(function (key) {
@@ -52,10 +56,25 @@ config.plugins = [
     new CommonsChunkPlugin({
         names: ['lib', 'manifest'],
         minChunks: Infinity
-    })
+    }),
+    new ImageminPlugin({
+        gifsicle: {
+            interlaced: true,
+        },
+        jpegtran: {
+            progressive: true,
+        },
+        svgo: null
+    }),
+    new CompressionPlugin(),
+    new BundleAnalyzerPlugin()
 ].concat(config.plugins);
 
 config.output.filename = '[name].[chunkhash:8].js';
 config.output.chunkFilename = '[name].[chunkhash:8].chunk.js';
+config.performance = {
+    hints: 'warning'
+};
+config.profile = true;
 
 module.exports = config;

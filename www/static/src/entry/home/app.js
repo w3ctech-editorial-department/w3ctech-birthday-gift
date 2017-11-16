@@ -10,9 +10,9 @@ import {post} from '../../util/http';
 
 import * as actions from './action';
 
-import GotoTop from '../../component/GotoTop';
+import GotoTop from '../../component/Back2Top';
 
-import 'style/home.styl';
+// import 'style/home.styl';
 
 const noop = function () {};
 const mapStateToProps = state => state;

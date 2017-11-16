@@ -1,7 +1,7 @@
 var path = require('path');
 
-var autoprefixer = require('autoprefixer');
-var sorting = require('postcss-sorting');
+var DashboardPlugin = require('webpack-dashboard/plugin');
+var SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 var rootPath = path.resolve(__dirname, '../');
 var STATIC = path.join(rootPath, 'www', 'static');
@@ -11,7 +11,7 @@ var ENTRY_PATH = path.join(SRC_PATH, 'entry');
 var CSS_PATH = path.join(SRC_PATH, 'css');
 var CONFIG_PATH = path.join(SRC_PATH, 'config');
 
-var sortingConfig = require(path.join(CONFIG_PATH, 'postcssSorting.js'));
+var babelrc = path.join(SRC_PATH, '.babelrc');
 
 var config = {
     context: SRC_PATH,
@@ -32,7 +32,21 @@ var config = {
                 use: [
                     {
                         loader: 'css-loader',
-                        options: {module: false}
+                        options: {
+                            importLoaders: 1,
+                            module: true,
+                            camelCase: true,
+                            localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                            getLocalIdent(context, localIdentName, localName, options) {
+                                return 'css-module';
+                            }
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+
+                        }
                     }
                 ]
             },
@@ -41,16 +55,16 @@ var config = {
                 use: [
                     {
                         loader: 'css-loader',
-                        options: {importLoaders: 2, module: false}
+                        options: {
+                            importLoaders: 2,
+                            module: false
+                        }
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: [
-                                autoprefixer(),
-                                sorting(sortingConfig)
-                            ]
-                        },
+
+                        }
                     },
                     {
                         loader: 'stylus-loader',
@@ -62,8 +76,45 @@ var config = {
             },
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: 'babel-loader'
+                exclude: /(node_modules|bower_components)/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            extends: babelrc,
+                            cacheDirectory: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.svg/,
+                use: [
+                    {
+                        loader: 'svg-sprite-loader',
+                        options: {
+                            symbolId: 'icon-[name]',
+                            // extract: true,
+                            // spriteFilename: 'icons.svg',
+                        },
+                    },
+                    {
+                        loader: 'svg-url-loader',
+                        options: {
+                            dataUrlLimit: 1024
+                        }
+                    },
+                    {
+                        loader: 'svgo-loader',
+                        options: {
+                            plugins: [
+                                {removeTitle: true},
+                                {convertColors: {shorthex: false}},
+                                {convertPathData: false}
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -72,6 +123,7 @@ var config = {
         path: path.join(STATIC, 'dist'),
         filename: '[name].js'
     },
+
     resolve: {
         alias: {
             css: path.join(SRC_PATH, 'css', 'entry')
@@ -83,7 +135,16 @@ var config = {
         enforceExtension: false,
         extensions: ['.web.js', '.ts', '.tsx', '.js', '.json', '.web.jsx', '.jsx']
     },
-    plugins: []
+
+    stats: {
+        colors: true,
+        timings: true
+    },
+
+    plugins: [
+        new DashboardPlugin({port: 3001}),
+        new SpriteLoaderPlugin()
+    ]
 };
 
 module.exports = config;

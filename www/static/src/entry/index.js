@@ -12,7 +12,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createSagaMiddleware from 'redux-saga';
 import Redbox from 'redbox-react';
-import DevTools from '../component/DevTools';
+import {DevTools} from '../component/Helper';
 
 import {AppContainer} from 'react-hot-loader';
 

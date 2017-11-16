@@ -1,13 +1,13 @@
 {
     "presets": [
         [
-            "env",
+            "@babel/env",
             {
                 "modules": false
             }
         ],
         // "stage-2",
-        "react"
+        "@babel/react"
     ],
     "plugins": [
         "react-hot-loader/babel",//top level variables are registered
@@ -21,9 +21,11 @@
                 "useESModules": false
             }
         ],
+        "transform-object-rest-spread",
         "transform-decorators-legacy",
-        "add-module-exports",
-        "transform-object-rest-spread"
+        "transform-decorators",
+        ["transform-class-properties", { "spec": true }],
+        "add-module-exports"
     ],
     "comments": false
 }

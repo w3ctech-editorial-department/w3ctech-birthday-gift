@@ -1,5 +1,5 @@
 /**
- * @file devtools
+ * @file DevTools组件
  * @author liuliang<liuliang@w3ctech.com>
  */
 
