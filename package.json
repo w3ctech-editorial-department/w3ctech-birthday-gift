@@ -7,7 +7,7 @@
         "email": "liuliang@w3ctech.com"
     },
     "scripts": {
-        "node-server": "node --nolazy --inspect=9876 www/index.js",
+        "node-server": "kill-port --port 9876 && node --nolazy --inspect=9876 www/index.js",
         "webpack-server": "webpack-dashboard -- node ./build/server.js",
         "start": "npm run node-server & npm run webpack-server",
         "build": "webpack --config ./build/webpack.config.prod.js -p --progress --colors",
@@ -42,6 +42,7 @@
         "grommet": "^1.3.4",
         "highlight.js": "^8.8.0",
         "imagemin-webpack-plugin": "^1.5.2",
+        "kill-port": "^1.0.0",
         "lost": "^8.2.0",
         "marked": "^0.3.5",
         "marked-toc": "^0.3.0",

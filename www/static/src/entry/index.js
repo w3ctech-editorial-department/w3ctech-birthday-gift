@@ -8,23 +8,24 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise';
+// import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 import createSagaMiddleware from 'redux-saga';
 import Redbox from 'redbox-react';
 import {DevTools} from '../component/Helper';
 
 import {AppContainer} from 'react-hot-loader';
 
-const saga = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 const CustomErrorReporter = ({error}) => <Redbox error={error}/>;
 CustomErrorReporter.propTypes = {
     error: PropTypes.instanceOf(Error).isRequired
 };
 
-export default (reducer, App, id = 'app') => {
-    let enhancer = applyMiddleware(...[thunk, saga, promise]);
+export default ({reducer, saga}, App, id = 'app') => {
+    // let enhancer = applyMiddleware(...[thunk, saga, promise]);
+    let enhancer = applyMiddleware(...[sagaMiddleware, promiseMiddleware]);
 
     if (process.env.NODE_ENV !== 'production') {
         enhancer = compose(
@@ -37,6 +38,8 @@ export default (reducer, App, id = 'app') => {
         reducer,
         enhancer
     );
+
+    sagaMiddleware.run(saga);
 
     const render = Component => {
 

@@ -25,7 +25,6 @@ const mapDispatchToProps = dispatch => ({
 export default class App extends Component {
 
     static propTypes = {
-        contactAction: PropTypes.string
     }
 
     static defaultProps = {
