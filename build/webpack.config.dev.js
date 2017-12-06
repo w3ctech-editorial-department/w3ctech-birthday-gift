@@ -87,9 +87,9 @@ config.plugins = [
         names: ['lib', 'manifest'],
         // minChunks: Infinity,
         minChunks: function (module, count) {
-            const resource = module.resource
+            const resource = module.resource;
             // 以 .css 结尾的资源，重复 require 大于 1 次
-            return resource && /\.css$/.test(resource) && count > 1
+            return resource && /\.css$/.test(resource) && count > 1;
         },
         filename: '[name].js'
     })

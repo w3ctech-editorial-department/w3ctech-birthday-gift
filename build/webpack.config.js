@@ -20,8 +20,8 @@ var config = {
             './entry/home'
         ],
         lib: [
-            'react', 'react-dom', 'redux', 'redux-saga',
-            'react-redux', 'redux-thunk', 'prop-types'
+            'react', 'react-dom', 'redux',
+            'redux-saga', 'react-redux', 'prop-types'
         ]
     },
 

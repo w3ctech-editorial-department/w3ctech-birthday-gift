@@ -9,7 +9,7 @@ var config = require('./webpack.config');
 
 var autoImports = [
     'whatwg-fetch',
-    'babel-polyfill'
+    '@babel/polyfill'
 ];
 
 Object.keys(config.entry).forEach(function (key) {
