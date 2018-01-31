@@ -21,7 +21,9 @@
                 "useESModules": false
             }
         ],
-        "transform-object-rest-spread",
+        "@babel/plugin-transform-destructuring",
+        "@babel/plugin-syntax-object-rest-spread",
+        "@babel/plugin-proposal-object-rest-spread",
         "transform-decorators-legacy",
         "transform-decorators",
         ["transform-class-properties", { "spec": true }],
