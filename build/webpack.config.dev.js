@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var BundleTracker = require('webpack-bundle-tracker');
 
 var config = require('./webpack.config');
 var port = process.env.PORT // PORT=3001 node ./build/server.js
@@ -83,6 +84,10 @@ config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new BundleTracker({
+        filename: './build/webpack-stats.json',
+        indent: 4
+    }),
     new webpack.optimize.CommonsChunkPlugin({
         names: ['lib', 'manifest'],
         // minChunks: Infinity,

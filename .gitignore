@@ -33,3 +33,11 @@ output.tar.gz
 runtime/
 app/
 .vscode/chrome/
+
+# OS
+.DS_Store
+Desktop.ini
+._*
+Thumbs.db
+.Spotlight-V100
+.Trashes

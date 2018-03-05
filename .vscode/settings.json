@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "browserslist",
+        "devtools",
+        "liuliang",
+        "localstorage"
+    ],
+    "editor.formatOnSave": true,
+    "javascript.format.enable": false,
+    "prettier.eslintIntegration": true
+}

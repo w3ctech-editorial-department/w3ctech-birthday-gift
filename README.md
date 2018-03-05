@@ -31,3 +31,5 @@ npm start
 ## How to visit
 
 Open url `http://127.0.0.1:7777/` in browser.
+
+## Troubleshooting
